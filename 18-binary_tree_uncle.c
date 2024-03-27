@@ -9,13 +9,18 @@
 binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 {
 	binary_tree_t *uncle = NULL;
+	binary_tree_t *grandparent = NULL;
 
 	if (node == NULL || node->parent == NULL || node->parent->parent == NULL)
 	{
 		return (uncle);
 	}
 
-	binary_tree_t *grandparent = node->parent->parent;
+	grandparent = node->parent->parent;
+	if (grandparent == NULL)
+	{
+		return uncle;
+	}
 
 	if (grandparent->left == node->parent)
 	{
@@ -25,5 +30,5 @@ binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 		uncle = grandparent->left;
 	}
 
-	return (uncle);
+	return uncle;
 }
